@@ -1,1 +1,274 @@
-h1 { font-family: Arial, Helvetica, sans-serif; }
+/* Custom styles for Chemistry Lab Simulation */
+
+/* Tab active state styles */
+.tab-button.active {
+    @apply border-lab-blue text-lab-blue;
+}
+
+/* Flame animation styles */
+.flame-base {
+    animation: flicker 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+    0%, 100% {
+        transform: scale(1) rotate(-1deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.05) rotate(1deg);
+        opacity: 1;
+    }
+}
+
+/* Test tube solution animation */
+#test-solution {
+    transition: all 1s ease-in-out;
+}
+
+/* Dropper animation */
+#dropper {
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Button hover effects */
+.cation-btn:hover,
+.qual-cation-btn:hover,
+.reagent-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
+}
+
+/* Selected button ring effect */
+.cation-btn.ring-4,
+.qual-cation-btn.ring-4,
+.reagent-btn.ring-4 {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Custom flame colors for different cations */
+.flame-li {
+    background: linear-gradient(to top, #dc2626, #f87171, transparent) !important;
+    box-shadow: 0 0 20px #dc262680, 0 0 40px #dc262640 !important;
+}
+
+.flame-na {
+    background: linear-gradient(to top, #fbbf24, #fde047, transparent) !important;
+    box-shadow: 0 0 20px #fbbf2480, 0 0 40px #fbbf2440 !important;
+}
+
+.flame-k {
+    background: linear-gradient(to top, #7c3aed, #a855f7, transparent) !important;
+    box-shadow: 0 0 20px #7c3aed80, 0 0 40px #7c3aed40 !important;
+}
+
+.flame-ca {
+    background: linear-gradient(to top, #ea580c, #f97316, transparent) !important;
+    box-shadow: 0 0 20px #ea580c80, 0 0 40px #ea580c40 !important;
+}
+
+.flame-sr {
+    background: linear-gradient(to top, #dc2626, #ef4444, transparent) !important;
+    box-shadow: 0 0 20px #dc262680, 0 0 40px #dc262640 !important;
+}
+
+.flame-ba {
+    background: linear-gradient(to top, #059669, #10b981, transparent) !important;
+    box-shadow: 0 0 20px #05966980, 0 0 40px #05966940 !important;
+}
+
+.flame-cu {
+    background: linear-gradient(to top, #0891b2, #06b6d4, transparent) !important;
+    box-shadow: 0 0 20px #0891b280, 0 0 40px #0891b240 !important;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #1e40af;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Result cards animation */
+.result-card {
+    animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Color sample circles */
+.color-sample {
+    border: 2px solid #d1d5db;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Burner base styling */
+.burner-base {
+    background: linear-gradient(to bottom, #4a5568, #2d3748);
+    position: relative;
+}
+
+.burner-base::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+    background: #718096;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Test tube styling improvements */
+.test-tube {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(229, 231, 235, 0.7));
+    box-shadow: 
+        inset -5px 0 10px rgba(0, 0, 0, 0.1),
+        inset 5px 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Protocol section styling */
+.protocol-section {
+    border-left: 4px solid #1e40af;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+}
+
+/* Equipment grid styling */
+.equipment-item {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.equipment-item:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: #1e40af;
+    transform: translateY(-1px);
+}
+
+/* Toast notification styles */
+.toast {
+    backdrop-filter: blur(10px);
+    background: rgba(34, 197, 94, 0.95);
+}
+
+/* Form input focus styles */
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button disabled state */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .flame-container {
+        width: 200px;
+        height: 250px;
+    }
+    
+    .test-tube-container {
+        width: 120px;
+        height: 200px;
+    }
+    
+    .grid-cols-7 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Print styles for reports */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-break {
+        page-break-before: always;
+    }
+    
+    .protocol-section {
+        border-left: 2px solid #000;
+        background: white;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Accessibility improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus indicators */
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid #1e40af;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .bg-gray-50 {
+        background-color: white;
+    }
+    
+    .text-gray-600 {
+        color: black;
+    }
+    
+    .border-gray-300 {
+        border-color: black;
+    }
+}
