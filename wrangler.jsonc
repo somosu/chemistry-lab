@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "chemistry-lab-9th-grade",
-  "compatibility_date": "2025-10-05",
+  "compatibility_date": "2024-10-05",
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"

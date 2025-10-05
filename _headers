@@ -1,0 +1,14 @@
+# Security and Performance Headers for Chemistry Lab
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-XSS-Protection: 1; mode=block
+
+# Static assets caching
+/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# API routes
+/api/*
+  Cache-Control: no-cache
