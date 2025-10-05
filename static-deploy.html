@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виртуальная химическая лаборатория - 9 класс</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Flame animation */
+        .flame-base {
+            animation: flicker 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 100% {
+                transform: scale(1) rotate(-1deg);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05) rotate(1deg);
+                opacity: 1;
+            }
+        }
+        
+        /* Tab styles */
+        .tab-button.active {
+            border-color: #1e40af !important;
+            color: #1e40af !important;
+        }
+        
+        /* Button hover effects */
+        .cation-btn:hover,
+        .qual-cation-btn:hover,
+        .reagent-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ring-4 {
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-blue-700">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-flask text-4xl text-blue-700"></i>
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Виртуальная химическая лаборатория</h1>
+                        <p class="text-lg text-gray-600">9 класс • Качественные реакции на катионы</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">Соответствует учебной программе</p>
+                    <p class="text-sm font-semibold text-blue-700">9.4.1.8 - 9.4.1.9</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex space-x-8">
+                <button id="tab-info" class="tab-button active py-4 px-6 text-sm font-medium border-b-2 border-blue-700 text-blue-700">
+                    <i class="fas fa-info-circle mr-2"></i>Информация
+                </button>
+                <button id="tab-flame" class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-fire mr-2"></i>Лаб. опыт №3
+                </button>
+                <button id="tab-qualitative" class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-vials mr-2"></i>Лаб. опыт №4
+                </button>
+                <button id="tab-report" class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-file-alt mr-2"></i>Протокол
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Information Tab -->
+        <div id="content-info" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Lab Experiment #3 Info -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-fire text-red-600 mr-3"></i>
+                        Лабораторный опыт №3
+                    </h2>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                        Определение катионов по окрашиванию пламени
+                    </h3>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Цель:</strong> Изучить качественные реакции окрашивания пламени для определения катионов Li⁺, Na⁺, K⁺, Ca²⁺, Sr²⁺, Ba²⁺, Cu²⁺</p>
+                        <p><strong>Принцип:</strong> При внесении соединений металлов в пламя, электроны в атомах переходят на более высокие энергетические уровни, а при возвращении излучают свет определенной длины волны.</p>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+                            <p class="text-sm"><i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i>
+                            <strong>Компетенция 9.4.1.8:</strong> описывать и проводить реакции окрашивания цвета пламени для определения катионов металлов</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab Experiment #4 Info -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-vials text-blue-700 mr-3"></i>
+                        Лабораторный опыт №4
+                    </h2>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                        Качественные реакции на катионы Fe²⁺, Fe³⁺, Cu²⁺
+                    </h3>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Цель:</strong> Провести качественные реакции для определения ионов железа(II), железа(III) и меди(II)</p>
+                        <p><strong>Принцип:</strong> Использование специфических реагентов, которые дают характерные цветные реакции с определенными катионами.</p>
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+                            <p class="text-sm"><i class="fas fa-flask text-blue-600 mr-2"></i>
+                            <strong>Компетенция 9.4.1.9:</strong> проводить качественные реакции на определение катионов Fe²⁺, Fe³⁺, Cu²⁺</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Demo Notice -->
+            <div class="mt-8 bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-400 p-6 rounded-lg">
+                <h3 class="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                    <i class="fas fa-rocket mr-2"></i>
+                    Статическая демо-версия
+                </h3>
+                <div class="text-green-700">
+                    <p class="mb-2">Это упрощенная версия виртуальной лаборатории для демонстрации интерфейса.</p>
+                    <p><strong>Полная интерактивная версия</strong> с работающими экспериментами доступна по адресу:</p>
+                    <p class="mt-2 font-mono bg-white p-2 rounded border">
+                        <a href="https://3000-is4cmt715dxtnbfhf20k5-6532622b.e2b.dev" target="_blank" class="text-blue-600 hover:underline">
+                            https://3000-is4cmt715dxtnbfhf20k5-6532622b.e2b.dev
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flame Test Tab -->
+        <div id="content-flame" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-fire text-red-600 mr-3"></i>
+                    Лабораторный опыт №3: Окрашивание пламени
+                </h2>
+                
+                <!-- Cation Selection -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Выберите катион для исследования:</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                        <button class="cation-btn bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-red-500 hover:to-red-700 transition-all" data-cation="Li+">
+                            Li⁺
+                        </button>
+                        <button class="cation-btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all" data-cation="Na+">
+                            Na⁺
+                        </button>
+                        <button class="cation-btn bg-gradient-to-r from-purple-400 to-purple-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-purple-500 hover:to-purple-700 transition-all" data-cation="K+">
+                            K⁺
+                        </button>
+                        <button class="cation-btn bg-gradient-to-r from-orange-400 to-orange-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-orange-700 transition-all" data-cation="Ca2+">
+                            Ca²⁺
+                        </button>
+                        <button class="cation-btn bg-gradient-to-r from-red-500 to-red-700 text-white px-4 py-3 rounded-lg font-semibold hover:from-red-600 hover:to-red-800 transition-all" data-cation="Sr2+">
+                            Sr²⁺
+                        </button>
+                        <button class="cation-btn bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-green-500 hover:to-green-700 transition-all" data-cation="Ba2+">
+                            Ba²⁺
+                        </button>
+                        <button class="cation-btn bg-gradient-to-r from-cyan-400 to-cyan-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-cyan-500 hover:to-cyan-700 transition-all" data-cation="Cu2+">
+                            Cu²⁺
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Demo Burner -->
+                <div class="text-center">
+                    <h4 class="text-lg font-semibold text-gray-700 mb-4">Горелка Бунзена (демо)</h4>
+                    <div class="relative mx-auto w-64 h-80 bg-gray-800 rounded-lg p-4" style="background: linear-gradient(to bottom, #4a5568, #2d3748);">
+                        <!-- Burner base -->
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-20 bg-gray-600 rounded-t-lg"></div>
+                        <!-- Flame -->
+                        <div class="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-12 h-24">
+                            <div class="flame-base w-full h-full bg-gradient-to-t from-orange-500 via-yellow-400 to-transparent rounded-full opacity-80"></div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600 italic">Полная интерактивная версия доступна по основной ссылке выше</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other tabs with demo content -->
+        <div id="content-qualitative" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Качественные реакции (демо)</h2>
+                <p class="text-gray-600">Интерактивные эксперименты доступны в полной версии.</p>
+            </div>
+        </div>
+
+        <div id="content-report" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Протокол работы (демо)</h2>
+                <p class="text-gray-600">Автоматическое формирование отчетов доступно в полной версии.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple tab switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.id.replace('tab-', 'content-');
+                    
+                    // Remove active class from all tabs
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'border-blue-700', 'text-blue-700');
+                        btn.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active', 'border-blue-700', 'text-blue-700');
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Show target tab content
+                    document.getElementById(targetTab).classList.remove('hidden');
+                });
+            });
+
+            // Demo cation selection
+            const cationBtns = document.querySelectorAll('.cation-btn');
+            cationBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    cationBtns.forEach(b => b.classList.remove('ring-4'));
+                    this.classList.add('ring-4');
+                    alert('В полной версии здесь будет интерактивный эксперимент с ' + this.dataset.cation);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
