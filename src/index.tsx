@@ -26,6 +26,16 @@ interface QualitativeTestResult {
   description: string
 }
 
+// New interface for anion testing (Lab Experiment #5)
+interface AnionTestResult {
+  anion: string
+  reagent: string
+  reaction: string
+  color: string
+  description: string
+  observation: string
+}
+
 // Flame test data for Lab Experiment #3
 const flameTestData: Record<string, FlameTestResult> = {
   'Li+': {
@@ -124,6 +134,154 @@ const qualitativeTestData: Record<string, Record<string, QualitativeTestResult>>
   }
 }
 
+// Anion test data for Lab Experiment #5
+const anionTestData: Record<string, Record<string, AnionTestResult>> = {
+  'Cl-': {
+    'AgNO3': {
+      anion: 'Cl⁻',
+      reagent: 'AgNO₃ (нитрат серебра)',
+      reaction: 'Ag⁺ + Cl⁻ → AgCl↓',
+      color: '#F5F5F5',
+      description: 'Белый осадок хлорида серебра',
+      observation: 'Осадок растворяется в растворе аммиака'
+    },
+    'Pb(NO3)2': {
+      anion: 'Cl⁻',
+      reagent: 'Pb(NO₃)₂ (нитрат свинца)',
+      reaction: 'Pb²⁺ + 2Cl⁻ → PbCl₂↓',
+      color: '#F5F5F5',
+      description: 'Белый кристаллический осадок PbCl₂',
+      observation: 'Осадок растворяется при нагревании'
+    }
+  },
+  'Br-': {
+    'AgNO3': {
+      anion: 'Br⁻',
+      reagent: 'AgNO₃ (нитрат серебра)',
+      reaction: 'Ag⁺ + Br⁻ → AgBr↓',
+      color: '#FFFACD',
+      description: 'Светло-желтый осадок бромида серебра',
+      observation: 'Осадок малорастворим в растворе аммиака'
+    },
+    'Cl2': {
+      anion: 'Br⁻',
+      reagent: 'Cl₂ (хлорная вода)',
+      reaction: 'Cl₂ + 2Br⁻ → 2Cl⁻ + Br₂',
+      color: '#FFA500',
+      description: 'Оранжево-бурое окрашивание',
+      observation: 'Выделение свободного брома'
+    }
+  },
+  'I-': {
+    'AgNO3': {
+      anion: 'I⁻',
+      reagent: 'AgNO₃ (нитрат серебра)',
+      reaction: 'Ag⁺ + I⁻ → AgI↓',
+      color: '#FFFF99',
+      description: 'Желтый осадок йодида серебра',
+      observation: 'Осадок нерастворим в растворе аммиака'
+    },
+    'Pb(NO3)2': {
+      anion: 'I⁻',
+      reagent: 'Pb(NO₃)₂ (нитрат свинца)',
+      reaction: 'Pb²⁺ + 2I⁻ → PbI₂↓',
+      color: '#FFD700',
+      description: 'Ярко-желтый осадок йодида свинца',
+      observation: 'Осадок растворяется при нагревании'
+    }
+  },
+  'SO42-': {
+    'BaCl2': {
+      anion: 'SO₄²⁻',
+      reagent: 'BaCl₂ (хлорид бария)',
+      reaction: 'Ba²⁺ + SO₄²⁻ → BaSO₄↓',
+      color: '#F5F5F5',
+      description: 'Белый кристаллический осадок BaSO₄',
+      observation: 'Осадок нерастворим в кислотах'
+    },
+    'Pb(NO3)2': {
+      anion: 'SO₄²⁻',
+      reagent: 'Pb(NO₃)₂ (нитрат свинца)',
+      reaction: 'Pb²⁺ + SO₄²⁻ → PbSO₄↓',
+      color: '#F5F5F5',
+      description: 'Белый осадок сульфата свинца',
+      observation: 'Осадок растворяется в концентрированной щелочи'
+    }
+  },
+  'CO32-': {
+    'HCl': {
+      anion: 'CO₃²⁻',
+      reagent: 'HCl (соляная кислота)',
+      reaction: 'CO₃²⁻ + 2H⁺ → CO₂↑ + H₂O',
+      color: '#FFFFFF',
+      description: 'Выделение бесцветного газа CO₂',
+      observation: 'Газ вызывает помутнение известковой воды'
+    },
+    'CaCl2': {
+      anion: 'CO₃²⁻',
+      reagent: 'CaCl₂ (хлорид кальция)',
+      reaction: 'Ca²⁺ + CO₃²⁻ → CaCO₃↓',
+      color: '#F5F5F5',
+      description: 'Белый осадок карбоната кальция',
+      observation: 'Осадок растворяется с выделением CO₂ при добавлении кислоты'
+    }
+  },
+  'PO43-': {
+    '(NH4)2MoO4': {
+      anion: 'PO₄³⁻',
+      reagent: '(NH₄)₂MoO₄ + HNO₃ (молибдат аммония)',
+      reaction: 'PO₄³⁻ + 12MoO₄²⁻ + 3NH₄⁺ + 24H⁺ → (NH₄)₃PO₄·12MoO₃↓ + 12H₂O',
+      color: '#FFFF99',
+      description: 'Желтый кристаллический осадок',
+      observation: 'Образование желтого осадка фосфорномолибдата аммония'
+    },
+    'Mg2+': {
+      anion: 'PO₄³⁻',
+      reagent: 'MgCl₂ + NH₃ (магниевая смесь)',
+      reaction: 'Mg²⁺ + NH₄⁺ + PO₄³⁻ → MgNH₄PO₄↓',
+      color: '#F5F5F5',
+      description: 'Белый кристаллический осадок',
+      observation: 'Образование струвита (MgNH₄PO₄)'
+    }
+  },
+  'NO3-': {
+    'FeSO4+H2SO4': {
+      anion: 'NO₃⁻',
+      reagent: 'FeSO₄ + H₂SO₄ (реакция бурого кольца)',
+      reaction: 'NO₃⁻ + 4H⁺ + 3Fe²⁺ → NO + 3Fe³⁺ + 2H₂O',
+      color: '#8B4513',
+      description: 'Образование бурого кольца',
+      observation: 'На границе слоев появляется бурое кольцо [Fe(NO)]²⁺'
+    },
+    'Zn+NaOH': {
+      anion: 'NO₃⁻',
+      reagent: 'Zn + NaOH (восстановление цинком)',
+      reaction: 'NO₃⁻ + 4Zn + 7OH⁻ + 6H₂O → NH₃ + 4[Zn(OH)₄]²⁻',
+      color: '#FFFFFF',
+      description: 'Выделение аммиака',
+      observation: 'Аммиак определяется по запаху и посинению лакмуса'
+    }
+  },
+  'SiO32-': {
+    'HCl': {
+      anion: 'SiO₃²⁻',
+      reagent: 'HCl (соляная кислота)',
+      reaction: 'SiO₃²⁻ + 2H⁺ → H₂SiO₃↓',
+      color: '#F5F5F5',
+      description: 'Белый студенистый осадок',
+      observation: 'Образование геля кремниевой кислоты'
+    },
+    'NH4F': {
+      anion: 'SiO₃²⁻',
+      reagent: 'NH₄F (фторид аммония)',
+      reaction: 'SiO₃²⁻ + 6F⁻ + 6H⁺ → [SiF₆]²⁻ + 3H₂O',
+      color: '#FFFFFF',
+      description: 'Растворение осадка кремниевой кислоты',
+      observation: 'Осадок H₂SiO₃ растворяется с образованием фторосиликата'
+    }
+  }
+}
+
 // API Routes
 
 // Get flame test data
@@ -151,6 +309,24 @@ app.get('/api/qualitative-test/:cation/:reagent', (c) => {
   const result = cationTests[reagent]
   if (!result) {
     return c.json({ error: 'Реагент не найден для данного катиона' }, 404)
+  }
+  
+  return c.json(result)
+})
+
+// Get anion test data (Lab Experiment #5)
+app.get('/api/anion-test/:anion/:reagent', (c) => {
+  const anion = c.req.param('anion')
+  const reagent = c.req.param('reagent')
+  
+  const anionTests = anionTestData[anion]
+  if (!anionTests) {
+    return c.json({ error: 'Анион не найден' }, 404)
+  }
+  
+  const result = anionTests[reagent]
+  if (!result) {
+    return c.json({ error: 'Реагент не найден для данного аниона' }, 404)
   }
   
   return c.json(result)
@@ -238,6 +414,9 @@ app.get('/', (c) => {
                     <button id="tab-qualitative" class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
                         <i class="fas fa-vials mr-2"></i>Лаб. опыт №4
                     </button>
+                    <button id="tab-anions" class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-atom mr-2"></i>Лаб. опыт №5
+                    </button>
                     <button id="tab-report" class="tab-button py-4 px-6 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
                         <i class="fas fa-file-alt mr-2"></i>Протокол
                     </button>
@@ -284,6 +463,25 @@ app.get('/', (c) => {
                             <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
                                 <p class="text-sm"><i class="fas fa-flask text-blue-600 mr-2"></i>
                                 <strong>Компетенция 9.4.1.9:</strong> проводить качественные реакции на определение катионов Fe²⁺, Fe³⁺, Cu²⁺</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lab Experiment #5 Info -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-atom text-purple-600 mr-3"></i>
+                            Лабораторный опыт №5
+                        </h2>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                            Определение анионов в водных растворах
+                        </h3>
+                        <div class="space-y-3 text-gray-600">
+                            <p><strong>Цель:</strong> Провести качественные реакции для определения анионов Cl⁻, Br⁻, I⁻, PO₄³⁻, SO₄²⁻, CO₃²⁻, NO₃⁻, SiO₃²⁻</p>
+                            <p><strong>Принцип:</strong> Использование специфических реагентов для идентификации анионов через реакции ионного обмена с образованием характерных осадков или газов.</p>
+                            <div class="bg-purple-50 border-l-4 border-purple-400 p-4 mt-4">
+                                <p class="text-sm"><i class="fas fa-atom text-purple-600 mr-2"></i>
+                                <strong>Компетенция 9.4.1.10:</strong> проводить качественные реакции на хлорид-, бромид-, йодид-, сульфат-, карбонат-, фосфат-, нитрат-, силикат- ионы</p>
                             </div>
                         </div>
                     </div>
@@ -479,6 +677,116 @@ app.get('/', (c) => {
                 </div>
             </div>
 
+            <!-- Anion Test Tab -->
+            <div id="content-anions" class="tab-content hidden">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-atom text-purple-600 mr-3"></i>
+                        Лабораторный опыт №5: Качественные реакции на анионы
+                    </h2>
+                    
+                    <!-- Test Selection -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Anion Selection -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-3">1. Выберите анион:</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-gray-400 to-gray-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-gray-500 hover:to-gray-700 transition-all" data-anion="Cl-">
+                                    Cl⁻ (хлорид)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-yellow-500 hover:to-yellow-700 transition-all" data-anion="Br-">
+                                    Br⁻ (бромид)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-orange-400 to-orange-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-orange-700 transition-all" data-anion="I-">
+                                    I⁻ (йодид)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-blue-400 to-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-blue-500 hover:to-blue-700 transition-all" data-anion="SO42-">
+                                    SO₄²⁻ (сульфат)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-green-500 hover:to-green-700 transition-all" data-anion="CO32-">
+                                    CO₃²⁻ (карбонат)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-purple-400 to-purple-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-purple-500 hover:to-purple-700 transition-all" data-anion="PO43-">
+                                    PO₄³⁻ (фосфат)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-red-500 hover:to-red-700 transition-all" data-anion="NO3-">
+                                    NO₃⁻ (нитрат)
+                                </button>
+                                <button class="anion-btn w-full text-left bg-gradient-to-r from-indigo-400 to-indigo-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-indigo-500 hover:to-indigo-700 transition-all" data-anion="SiO32-">
+                                    SiO₃²⁻ (силикат)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Reagent Selection -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-3">2. Выберите реагент:</h3>
+                            <div id="anion-reagent-selection" class="space-y-2">
+                                <p class="text-gray-500 italic">Сначала выберите анион</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Test Tube Simulation for Anions -->
+                    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="text-center">
+                            <h4 class="text-lg font-semibold text-gray-700 mb-4">Проведение реакции ионного обмена</h4>
+                            <div class="relative mx-auto w-40 h-60">
+                                <!-- Test tube -->
+                                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-48 bg-gradient-to-b from-gray-100 to-gray-200 rounded-b-full border-2 border-gray-300">
+                                    <!-- Solution -->
+                                    <div id="anion-test-solution" class="absolute bottom-2 left-2 right-2 h-12 bg-blue-200 rounded-b-full transition-all duration-1000"></div>
+                                    <!-- Precipitate/Gas visualization -->
+                                    <div id="anion-reaction-effect" class="absolute bottom-14 left-2 right-2 h-8 opacity-0 transition-all duration-1000"></div>
+                                </div>
+                                <!-- Dropper -->
+                                <div id="anion-dropper" class="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-20 transition-all duration-500">
+                                    <div class="w-2 h-16 bg-gray-600 mx-auto"></div>
+                                    <div class="w-6 h-4 bg-gray-400 rounded-full mx-auto"></div>
+                                </div>
+                            </div>
+                            <button id="conduct-anion-test-btn" class="mt-4 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
+                                <i class="fas fa-flask mr-2"></i>Провести реакцию
+                            </button>
+                        </div>
+
+                        <!-- Anion Test Results -->
+                        <div id="anion-results" class="hidden">
+                            <h4 class="text-lg font-semibold text-gray-700 mb-4">Результаты эксперимента</h4>
+                            <div class="bg-gray-50 rounded-lg p-6 space-y-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-semibold text-gray-700">Анион:</span>
+                                    <span id="anion-result-anion" class="text-purple-600 font-semibold"></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-semibold text-gray-700">Реагент:</span>
+                                    <span id="anion-result-reagent" class="text-gray-600"></span>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="font-semibold text-gray-700">Химическая реакция:</span>
+                                    <p id="anion-result-reaction" class="text-gray-600 mt-2 font-mono text-sm bg-white p-3 rounded border"></p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="font-semibold text-gray-700">Наблюдаемый эффект:</span>
+                                    <div id="anion-result-color-sample" class="w-8 h-8 rounded-full border-2 border-gray-300"></div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="font-semibold text-gray-700">Описание:</span>
+                                    <p id="anion-result-description" class="text-gray-600 mt-2"></p>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="font-semibold text-gray-700">Наблюдения:</span>
+                                    <p id="anion-result-observation" class="text-gray-600 mt-2"></p>
+                                </div>
+                                <button id="add-to-report-anion" class="w-full mt-4 bg-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                                    <i class="fas fa-plus mr-2"></i>Добавить в протокол
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Report Tab -->
             <div id="content-report" class="tab-content hidden">
                 <div class="bg-white rounded-lg shadow-lg p-6">
@@ -548,6 +856,14 @@ app.get('/', (c) => {
                             <h5 class="font-semibold text-gray-700 mb-3">Лабораторный опыт №4: Качественные реакции</h5>
                             <div id="qualitative-test-results" class="space-y-2">
                                 <p class="text-gray-500 italic">Результаты будут добавлены после проведения экспериментов</p>
+                            </div>
+                        </div>
+
+                        <!-- Anion Test Results -->
+                        <div class="mb-6">
+                            <h5 class="font-semibold text-gray-700 mb-3">Лабораторный опыт №5: Качественные реакции на анионы</h5>
+                            <div id="anion-test-results" class="space-y-2">
+                                <p class="text-gray-500 italic">Результаты анионных тестов будут добавлены после проведения экспериментов</p>
                             </div>
                         </div>
                     </div>

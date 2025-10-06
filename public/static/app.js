@@ -1,8 +1,11 @@
 // Global variables
 let selectedCation = null;
 let selectedReagent = null;
+let selectedAnion = null;
+let selectedAnionReagent = null;
 let flameTestResults = [];
 let qualitativeTestResults = [];
+let anionTestResults = [];
 
 // DOM Elements
 const tabButtons = document.querySelectorAll('.tab-button');
@@ -16,11 +19,19 @@ const dropper = document.getElementById('dropper');
 const conductTestBtn = document.getElementById('conduct-test-btn');
 const reportDate = document.getElementById('report-date');
 
+// Anion test DOM elements
+const anionResults = document.getElementById('anion-results');
+const anionTestSolution = document.getElementById('anion-test-solution');
+const anionDropper = document.getElementById('anion-dropper');
+const conductAnionTestBtn = document.getElementById('conduct-anion-test-btn');
+const anionReactionEffect = document.getElementById('anion-reaction-effect');
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeTabs();
     initializeFlameTest();
     initializeQualitativeTest();
+    initializeAnionTest();
     initializeReport();
     setCurrentDate();
 });
@@ -316,6 +327,282 @@ function displayQualitativeResults(result) {
     };
 }
 
+// Anion test functionality
+function initializeAnionTest() {
+    // Anion selection buttons
+    const anionButtons = document.querySelectorAll('.anion-btn');
+    
+    anionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            selectedAnion = this.dataset.anion;
+            selectedAnionReagent = null;
+            
+            // Update button states
+            anionButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-white'));
+            this.classList.add('ring-4', 'ring-white');
+            
+            // Reset test tube and results
+            resetAnionTestTube();
+            anionResults.classList.add('hidden');
+            if (conductAnionTestBtn) conductAnionTestBtn.disabled = true;
+            
+            // Update reagent selection
+            updateAnionReagentSelection();
+        });
+    });
+    
+    // Conduct anion test button
+    if (conductAnionTestBtn) {
+        conductAnionTestBtn.addEventListener('click', function() {
+            if (!selectedAnion || !selectedAnionReagent) {
+                alert('Выберите анион и реагент!');
+                return;
+            }
+            
+            conductAnionTest();
+        });
+    }
+}
+
+// Update anion reagent selection based on selected anion
+function updateAnionReagentSelection() {
+    const reagentSelection = document.getElementById('anion-reagent-selection');
+    
+    const reagentData = {
+        'Cl-': [
+            { id: 'AgNO3', name: 'AgNO₃', description: 'Нитрат серебра' },
+            { id: 'Pb(NO3)2', name: 'Pb(NO₃)₂', description: 'Нитрат свинца' }
+        ],
+        'Br-': [
+            { id: 'AgNO3', name: 'AgNO₃', description: 'Нитрат серебра' },
+            { id: 'Cl2', name: 'Cl₂', description: 'Хлорная вода' }
+        ],
+        'I-': [
+            { id: 'AgNO3', name: 'AgNO₃', description: 'Нитрат серебра' },
+            { id: 'Pb(NO3)2', name: 'Pb(NO₃)₂', description: 'Нитрат свинца' }
+        ],
+        'SO42-': [
+            { id: 'BaCl2', name: 'BaCl₂', description: 'Хлорид бария' },
+            { id: 'Pb(NO3)2', name: 'Pb(NO₃)₂', description: 'Нитрат свинца' }
+        ],
+        'CO32-': [
+            { id: 'HCl', name: 'HCl', description: 'Соляная кислота' },
+            { id: 'CaCl2', name: 'CaCl₂', description: 'Хлорид кальция' }
+        ],
+        'PO43-': [
+            { id: '(NH4)2MoO4', name: '(NH₄)₂MoO₄', description: 'Молибдат аммония + HNO₃' },
+            { id: 'Mg2+', name: 'MgCl₂ + NH₃', description: 'Магниевая смесь' }
+        ],
+        'NO3-': [
+            { id: 'FeSO4+H2SO4', name: 'FeSO₄ + H₂SO₄', description: 'Реакция бурого кольца' },
+            { id: 'Zn+NaOH', name: 'Zn + NaOH', description: 'Восстановление цинком' }
+        ],
+        'SiO32-': [
+            { id: 'HCl', name: 'HCl', description: 'Соляная кислота' },
+            { id: 'NH4F', name: 'NH₄F', description: 'Фторид аммония' }
+        ]
+    };
+    
+    const reagents = reagentData[selectedAnion] || [];
+    
+    if (reagents.length === 0) {
+        reagentSelection.innerHTML = '<p class="text-gray-500 italic">Реагенты не найдены</p>';
+        return;
+    }
+    
+    reagentSelection.innerHTML = reagents.map(reagent => `
+        <button class="anion-reagent-btn w-full text-left bg-gradient-to-r from-gray-400 to-gray-600 text-white px-4 py-3 rounded-lg font-semibold hover:from-gray-500 hover:to-gray-700 transition-all" data-reagent="${reagent.id}">
+            <div class="font-semibold">${reagent.name}</div>
+            <div class="text-sm opacity-90">${reagent.description}</div>
+        </button>
+    `).join('');
+    
+    // Add event listeners to anion reagent buttons
+    const anionReagentButtons = document.querySelectorAll('.anion-reagent-btn');
+    anionReagentButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            selectedAnionReagent = this.dataset.reagent;
+            
+            // Update button states
+            anionReagentButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-white'));
+            this.classList.add('ring-4', 'ring-white');
+            
+            // Enable conduct test button
+            if (conductAnionTestBtn) conductAnionTestBtn.disabled = false;
+            
+            // Reset test tube and results
+            resetAnionTestTube();
+            anionResults.classList.add('hidden');
+        });
+    });
+}
+
+// Conduct anion test
+async function conductAnionTest() {
+    try {
+        // Show loading state
+        conductAnionTestBtn.disabled = true;
+        conductAnionTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Проводится реакция...';
+        
+        // Animate dropper
+        animateAnionDropper();
+        
+        // Fetch test results
+        const response = await axios.get(`/api/anion-test/${selectedAnion}/${selectedAnionReagent}`);
+        const result = response.data;
+        
+        // Wait for animation to complete
+        setTimeout(() => {
+            // Update solution and reaction effect
+            updateAnionReaction(result);
+            
+            // Show results after reaction effect
+            setTimeout(() => {
+                displayAnionResults(result);
+                conductAnionTestBtn.disabled = false;
+                conductAnionTestBtn.innerHTML = '<i class="fas fa-flask mr-2"></i>Провести реакцию';
+            }, 1500);
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Ошибка при проведении реакции на анионы:', error);
+        alert('Произошла ошибка при проведении реакции');
+        conductAnionTestBtn.disabled = false;
+        conductAnionTestBtn.innerHTML = '<i class="fas fa-flask mr-2"></i>Провести реакцию';
+    }
+}
+
+// Animate anion dropper
+function animateAnionDropper() {
+    if (anionDropper) {
+        anionDropper.style.transform = 'translate(-50%, 20px)';
+        setTimeout(() => {
+            anionDropper.style.transform = 'translate(-50%, 0)';
+        }, 500);
+    }
+}
+
+// Update anion reaction visualization
+function updateAnionReaction(result) {
+    if (anionTestSolution) {
+        anionTestSolution.style.backgroundColor = result.color;
+        anionTestSolution.style.height = '20px';
+        anionTestSolution.style.boxShadow = `0 0 10px ${result.color}80`;
+    }
+    
+    // Add special effects for different reaction types
+    if (anionReactionEffect) {
+        if (result.description.includes('осадок')) {
+            // Show precipitate
+            anionReactionEffect.style.backgroundColor = result.color;
+            anionReactionEffect.style.opacity = '0.7';
+            anionReactionEffect.style.borderRadius = '50%';
+        } else if (result.description.includes('газ') || result.description.includes('аммиак')) {
+            // Show gas bubbles
+            anionReactionEffect.innerHTML = '<div class="flex space-x-1"><div class="w-2 h-2 bg-white rounded-full opacity-70 animate-bounce"></div><div class="w-2 h-2 bg-white rounded-full opacity-70 animate-bounce" style="animation-delay: 0.2s"></div><div class="w-2 h-2 bg-white rounded-full opacity-70 animate-bounce" style="animation-delay: 0.4s"></div></div>';
+            anionReactionEffect.style.opacity = '1';
+        }
+    }
+}
+
+// Reset anion test tube to default state
+function resetAnionTestTube() {
+    if (anionTestSolution) {
+        anionTestSolution.style.backgroundColor = '#BFDBFE';
+        anionTestSolution.style.height = '12px';
+        anionTestSolution.style.boxShadow = 'none';
+    }
+    
+    if (anionReactionEffect) {
+        anionReactionEffect.style.opacity = '0';
+        anionReactionEffect.innerHTML = '';
+        anionReactionEffect.style.backgroundColor = 'transparent';
+    }
+}
+
+// Display anion test results
+function displayAnionResults(result) {
+    document.getElementById('anion-result-anion').textContent = result.anion;
+    document.getElementById('anion-result-reagent').textContent = result.reagent;
+    document.getElementById('anion-result-reaction').textContent = result.reaction;
+    document.getElementById('anion-result-color-sample').style.backgroundColor = result.color;
+    document.getElementById('anion-result-description').textContent = result.description;
+    document.getElementById('anion-result-observation').textContent = result.observation;
+    
+    anionResults.classList.remove('hidden');
+    
+    // Add to report button functionality
+    document.getElementById('add-to-report-anion').onclick = function() {
+        addAnionTestToReport(result);
+    };
+}
+
+// Add anion test result to report
+function addAnionTestToReport(result) {
+    // Check if this combination already exists
+    const existingIndex = anionTestResults.findIndex(r => 
+        r.anion === result.anion && r.reagent === result.reagent
+    );
+    if (existingIndex !== -1) {
+        anionTestResults[existingIndex] = result;
+    } else {
+        anionTestResults.push(result);
+    }
+    
+    updateAnionTestResultsDisplay();
+    
+    // Show success message
+    showSuccessMessage('Результат анионного теста добавлен в протокол!');
+}
+
+// Update anion test results display in report
+function updateAnionTestResultsDisplay() {
+    const container = document.getElementById('anion-test-results');
+    
+    if (!container) return;
+    
+    if (anionTestResults.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 italic">Результаты анионных тестов будут добавлены после проведения экспериментов</p>';
+        return;
+    }
+    
+    container.innerHTML = anionTestResults.map((result, index) => `
+        <div class="bg-white border rounded-lg p-4 mb-3">
+            <div class="flex items-center justify-between">
+                <h6 class="font-semibold text-gray-800">Опыт ${index + 1}: ${result.anion} + ${result.reagent.split(' ')[0]}</h6>
+                <button onclick="removeAnionTestResult(${index})" class="text-red-500 hover:text-red-700">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="mt-2 text-sm">
+                <div class="mb-2">
+                    <span class="font-medium text-gray-600">Реагент:</span> ${result.reagent}
+                </div>
+                <div class="mb-2">
+                    <span class="font-medium text-gray-600">Реакция:</span> 
+                    <span class="font-mono text-xs bg-gray-100 px-2 py-1 rounded">${result.reaction}</span>
+                </div>
+                <div class="mb-2 flex items-center space-x-2">
+                    <span class="font-medium text-gray-600">Эффект:</span>
+                    <div class="w-4 h-4 rounded-full border border-gray-300" style="background-color: ${result.color}"></div>
+                    <span class="text-gray-600">${result.description}</span>
+                </div>
+                <div class="mb-2">
+                    <span class="font-medium text-gray-600">Наблюдения:</span> ${result.observation}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Remove anion test result
+function removeAnionTestResult(index) {
+    if (confirm('Удалить этот результат из протокола?')) {
+        anionTestResults.splice(index, 1);
+        updateAnionTestResultsDisplay();
+    }
+}
+
 // Report functionality
 function initializeReport() {
     document.getElementById('generate-report-btn').addEventListener('click', generateFullReport);
@@ -465,7 +752,7 @@ async function generateFullReport() {
         return;
     }
     
-    if (flameTestResults.length === 0 && qualitativeTestResults.length === 0) {
+    if (flameTestResults.length === 0 && qualitativeTestResults.length === 0 && anionTestResults.length === 0) {
         alert('Проведите хотя бы один эксперимент перед формированием отчета');
         return;
     }
@@ -477,6 +764,7 @@ async function generateFullReport() {
             conclusion,
             flameTestResults,
             qualitativeTestResults,
+            anionTestResults,
             date: reportDate.textContent
         };
         
@@ -496,17 +784,19 @@ async function generateFullReport() {
 function generatePDFReport(reportData) {
     let reportText = `ПРОТОКОЛ ЛАБОРАТОРНОЙ РАБОТЫ
     
-ТЕМА: Качественные реакции на катионы
+ТЕМА: Качественные реакции на катионы и анионы
 ДАТА: ${reportData.date}
 СТУДЕНТ: ${reportData.studentName}
 КЛАСС: ${reportData.studentClass}
 
 ЦЕЛЬ РАБОТЫ:
-Изучить качественные реакции для определения катионов металлов методом окрашивания пламени и химических реакций.
+Изучить качественные реакции для определения катионов металлов методом окрашивания пламени, химических реакций на катионы и анионы в водных растворах.
 
 ОБОРУДОВАНИЕ И РЕАКТИВЫ:
-Оборудование: Горелка Бунзена, платиновая петля, пробирки, пипетки
-Реактивы: Соли Li⁺, Na⁺, K⁺, Ca²⁺, Sr²⁺, Ba²⁺, Cu²⁺, K₃[Fe(CN)₆], K₄[Fe(CN)₆], KSCN, NH₄OH, NaOH
+Оборудование: Горелка Бунзена, платиновая петля, пробирки, пипетки, штатив для пробирок
+Реактивы: 
+- Для катионов: Соли Li⁺, Na⁺, K⁺, Ca²⁺, Sr²⁺, Ba²⁺, Cu²⁺, K₃[Fe(CN)₆], K₄[Fe(CN)₆], KSCN, NH₄OH, NaOH
+- Для анионов: AgNO₃, BaCl₂, Pb(NO₃)₂, HCl, (NH₄)₂MoO₄, FeSO₄, H₂SO₄, Zn, NaOH, NH₄F
 
 ХОД РАБОТЫ И РЕЗУЛЬТАТЫ:
 
@@ -532,6 +822,20 @@ ${index + 1}. Катион: ${result.cation}
    Реагент: ${result.reagent}
    Реакция: ${result.reaction}
    Наблюдение: ${result.description}
+`;
+    });
+
+    reportText += `
+Лабораторный опыт №5: Качественные реакции на анионы
+`;
+
+    reportData.anionTestResults.forEach((result, index) => {
+        reportText += `
+${index + 1}. Анион: ${result.anion}
+   Реагент: ${result.reagent}
+   Реакция: ${result.reaction}
+   Описание: ${result.description}
+   Наблюдения: ${result.observation}
 `;
     });
 

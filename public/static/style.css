@@ -22,19 +22,28 @@
 }
 
 /* Test tube solution animation */
-#test-solution {
+#test-solution,
+#anion-test-solution {
     transition: all 1s ease-in-out;
 }
 
 /* Dropper animation */
-#dropper {
+#dropper,
+#anion-dropper {
     transition: transform 0.5s ease-in-out;
+}
+
+/* Anion reaction effects */
+#anion-reaction-effect {
+    transition: all 1s ease-in-out;
 }
 
 /* Button hover effects */
 .cation-btn:hover,
 .qual-cation-btn:hover,
-.reagent-btn:hover {
+.reagent-btn:hover,
+.anion-btn:hover,
+.anion-reagent-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.3);
 }
@@ -42,7 +51,9 @@
 /* Selected button ring effect */
 .cation-btn.ring-4,
 .qual-cation-btn.ring-4,
-.reagent-btn.ring-4 {
+.reagent-btn.ring-4,
+.anion-btn.ring-4,
+.anion-reagent-btn.ring-4 {
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
 }
 
