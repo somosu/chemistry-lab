@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подготовка к ЕНТ по биологии – 11 класс</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #020617;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+        h1 {
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+        h2 {
+            margin-top: 24px;
+            font-size: 20px;
+        }
+        h3 {
+            margin-top: 14px;
+            font-size: 16px;
+        }
+        .subtitle {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .info {
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 16px;
+        }
+        .card {
+            background: #020617;
+            border-radius: 16px;
+            border: 1px solid #1f2937;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+        }
+        .question {
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #1f2937;
+        }
+        .question:last-child {
+            border-bottom: none;
+        }
+        .q-text {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 4px;
+        }
+        label.option {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 8px;
+            transition: background 0.15s ease, border-color 0.15s ease;
+            border: 1px solid transparent;
+        }
+        label.option:hover {
+            background: rgba(15,23,42,0.9);
+            border-color: #1f2937;
+        }
+        .feedback {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .feedback.correct {
+            color: #22c55e;
+        }
+        .feedback.incorrect {
+            color: #ef4444;
+        }
+        .feedback.missed {
+            color: #9ca3af;
+        }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 8px;
+        }
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9, #22c55e);
+            color: #0b1120;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(34,197,94,0.35);
+        }
+        .btn-secondary {
+            background: #020617;
+            color: #e5e7eb;
+            border: 1px solid #4b5563;
+        }
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .result-box {
+            margin-top: 8px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: rgba(56,189,248,0.15);
+            border: 1px solid rgba(56,189,248,0.7);
+            font-size: 13px;
+        }
+        .score {
+            font-weight: 700;
+            color: #facc15;
+        }
+        .matching-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        .matching-row select {
+            padding: 2px 6px;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
+            background: #020617;
+            color: #e5e7eb;
+            font-size: 13px;
+        }
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .text-block {
+            font-size: 14px;
+            background: #020617;
+            border-radius: 12px;
+            border: 1px dashed #1f2937;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+        }
+        .multi-note {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+        @media (max-width: 768px) {
+            .page {
+                padding: 16px 10px 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h1>Подготовка к ЕНТ по биологии</h1>
+    <div class="subtitle">Полный пробный тест (40 заданий) для 11 класса</div>
+    <div class="info">
+        Время на выполнение ориентировочно 120 минут. <br>
+        Части теста:
+        <ul>
+            <li>Часть 1 – 25 заданий с одним правильным ответом</li>
+            <li>Часть 2 – 5 контекстных заданий</li>
+            <li>Часть 3 – 5 заданий на установление соответствия</li>
+            <li>Часть 4 – 5 заданий с несколькими правильными ответами</li>
+        </ul>
+        Внизу страницы есть общая кнопка подсчёта итогового результата.
+    </div>
+
+    <!-- ЧАСТЬ 1 -->
+    <section class="card" id="part1">
+        <h2>Часть 1. Один правильный ответ (25 вопросов)</h2>
+        <div id="part1-questions"></div>
+        <div class="controls">
+            <button class="btn-secondary" type="button" onclick="checkPart1()">Проверить часть 1</button>
+        </div>
+        <div id="part1-result" class="result-box" style="display:none;"></div>
+    </section>
+
+    <!-- ЧАСТЬ 2 -->
+    <section class="card" id="part2">
+        <h2>Часть 2. Контекстные вопросы (5 вопросов)</h2>
+
+        <div id="part2-questions"></div>
+
+        <div class="controls">
+            <button class="btn-secondary" type="button" onclick="checkPart2()">Проверить часть 2</button>
+        </div>
+        <div id="part2-result" class="result-box" style="display:none;"></div>
+    </section>
+
+    <!-- ЧАСТЬ 3 -->
+    <section class="card" id="part3">
+        <h2>Часть 3. Установите соответствие (5 заданий)</h2>
+        <div id="part3-questions"></div>
+        <div class="controls">
+            <button class="btn-secondary" type="button" onclick="checkPart3()">Проверить часть 3</button>
+        </div>
+        <div id="part3-result" class="result-box" style="display:none;"></div>
+    </section>
+
+    <!-- ЧАСТЬ 4 -->
+    <section class="card" id="part4">
+        <h2>Часть 4. Несколько правильных ответов (5 заданий)</h2>
+        <div class="multi-note">В каждом вопросе выберите 2–3 правильных ответа. Балл засчитывается только при полностью верном наборе.</div>
+        <div id="part4-questions"></div>
+        <div class="controls">
+            <button class="btn-secondary" type="button" onclick="checkPart4()">Проверить часть 4</button>
+        </div>
+        <div id="part4-result" class="result-box" style="display:none;"></div>
+    </section>
+
+    <!-- ИТОГ -->
+    <section class="card" id="total">
+        <h2>Итоговый результат</h2>
+        <div class="controls">
+            <button class="btn-primary" type="button" onclick="checkAll()">✅ Подсчитать общий результат (все части)</button>
+        </div>
+        <div id="total-result" class="result-box" style="display:none;"></div>
+    </section>
+</div>
+
+<script>
+    // ---------- ДАННЫЕ ТЕСТА ----------
+
+    // ЧАСТЬ 1
+    const part1 = [
+        {
+            q: "1. Какой органоид клетки отвечает за синтез белка?",
+            options: ["Лизосома", "Рибосома", "Аппарат Гольджи", "Митохондрия"],
+            correct: 1
+        },
+        {
+            q: "2. Основная единица наследственности — это:",
+            options: ["Хромосома", "Белок", "Ген", "Нуклеотид"],
+            correct: 2
+        },
+        {
+            q: "3. Какой тип деления приводит к образованию гамет?",
+            options: ["Митоз", "Мейоз", "Амитоз", "Бинарное деление"],
+            correct: 1
+        },
+        {
+            q: "4. Какой витамин предотвращает цингу?",
+            options: ["Витамин A", "Витамин B12", "Витамин C", "Витамин D"],
+            correct: 2
+        },
+        {
+            q: "5. Фотосинтез происходит в:",
+            options: ["Хлоропластах", "Митохондриях", "Ядре", "Рибосомах"],
+            correct: 0
+        },
+        {
+            q: "6. Основная органелла, где синтезируется АТФ в аэробной клетке:",
+            options: ["Рибосома", "Митохондрия", "ЭПР (эндоплазматическая сеть)", "Лизосома"],
+            correct: 1
+        },
+        {
+            q: "7. Репликация ДНК происходит в фазе клеточного цикла:",
+            options: ["G1", "S", "G2", "M"],
+            correct: 1
+        },
+        {
+            q: "8. Молекула, состоящая из аминокислот:",
+            options: ["Углевод", "Липид", "Белок", "Нуклеиновая кислота"],
+            correct: 2
+        },
+        {
+            q: "9. К какому царству относятся многоклеточные фотосинтезирующие организмы?",
+            options: ["Грибы", "Животные", "Растения", "Простейшие"],
+            correct: 2
+        },
+        {
+            q: "10. Осмос — это:",
+            options: [
+                "Движение молекул воды через полупроницаемую мембрану из области с меньшей концентрацией растворённых веществ в область с большей",
+                "Движение растворённых веществ через мембрану",
+                "Диффузия газов",
+                "Перенос веществ активным транспортом"
+            ],
+            correct: 0
+        },
+        {
+            q: "11. Какой газ является непосредственным побочным продуктом световой фазы фотосинтеза?",
+            options: ["Углекислый газ", "Кислород", "Азот", "Водород"],
+            correct: 1
+        },
+        {
+            q: "12. Какой фермент разлагает перекись водорода (H₂O₂) на воду и кислород?",
+            options: ["Пероксидаза", "Каталаза", "Амилаза", "Липаза"],
+            correct: 1
+        },
+        {
+            q: "13. Закон Менделя о расщеплении гласит, что:",
+            options: [
+                "Признаки потомков всегда промежуточны",
+                "При образовании гамет аллели разделяются по разным гаметам",
+                "Признаки наследуются вместе навсегда",
+                "Окружающая среда определяет все признаки"
+            ],
+            correct: 1
+        },
+        {
+            q: "14. Какой орган человека отвечает за выработку инсулина, регулирующего уровень глюкозы в крови?",
+            options: ["Печень", "Щитовидная железа", "Поджелудочная железа", "Надпочечники"],
+            correct: 2
+        },
+        {
+            q: "15. Что обеспечивает основной перенос кислорода в крови?",
+            options: ["Плазма", "Тромбоциты", "Эритроциты", "Гемоглобин"],
+            correct: 3
+        },
+        {
+            q: "16. Процесс анаэробного расщепления глюкозы с образованием пирувата называется:",
+            options: ["Гликолиз", "Цикл Кребса", "Окислительное фосфорилирование", "Фотосинтез"],
+            correct: 0
+        },
+        {
+            q: "17. Основной строительный компонент биологических мембран:",
+            options: ["Белки", "Углеводы", "Фосфолипиды", "Нуклеиновые кислоты"],
+            correct: 2
+        },
+        {
+            q: "18. Что такое аллель?",
+            options: ["Альтернативная форма гена", "Хромосома в клетке", "Тип клетки", "Белок"],
+            correct: 0
+        },
+        {
+            q: "19. Какой уровень организации жизни включает популяцию, биоценоз и абиотические факторы (биотоп)?",
+            options: ["Организм", "Популяция", "Экосистема", "Ткань"],
+            correct: 2
+        },
+        {
+            q: "20. Пример биотического фактора в экосистеме:",
+            options: ["Температура", "Влажность", "Конкуренция между видами", "pH почвы"],
+            correct: 2
+        },
+        {
+            q: "21. Антитела — это:",
+            options: [
+                "Вирусные частицы",
+                "Белки, вырабатываемые иммунной системой для распознавания и нейтрализации антигенов",
+                "Липиды крови",
+                "Тип лейкоцитов"
+            ],
+            correct: 1
+        },
+        {
+            q: "22. Какой орган выполняет детоксикацию веществ и синтез белков плазмы?",
+            options: ["Печень", "Почки", "Лёгкие", "Сердце"],
+            correct: 0
+        },
+        {
+            q: "23. Набор хромосом, характерный для вида, называется:",
+            options: ["Геном", "Хроматин", "Кариотип", "Локус"],
+            correct: 2
+        },
+        {
+            q: "24. Какой тип ткани отвечает за сокращение сердца?",
+            options: ["Скелетная мышечная ткань", "Гладкая мышечная ткань", "Нервная ткань", "Сердечная (миокард)"],
+            correct: 3
+        },
+        {
+            q: "25. Какой процесс во время мейоза увеличивает генетическое разнообразие за счёт обмена участками между гомологичными хромосомами?",
+            options: ["Мутация", "Кроссинговер", "Дупликация", "Дезоксирибонизация"],
+            correct: 1
+        }
+    ];
+
+    // ЧАСТЬ 2
+    const part2Texts = [
+        {
+            text: "Текст 1. Растение поместили в герметичную камеру с повышенной концентрацией CO₂ и интенсивным освещением. Через некоторое время содержание кислорода в камере увеличилось.",
+            questions: [
+                {
+                    q: "1. Какой процесс в основном объясняет увеличение концентрации кислорода в камере?",
+                    options: ["Дыхание", "Фотосинтез", "Бродение", "Испарение"],
+                    correct: 1
+                },
+                {
+                    q: "2. Какой фактор наиболее вероятно ускорил фотосинтез в эксперименте?",
+                    options: ["Повышенная влажность", "Повышенная концентрация CO₂", "Наличие кислорода", "Снижение температуры"],
+                    correct: 1
+                }
+            ]
+        },
+        {
+            text: "Текст 2. В образце крови курильщика было выявлено повышенное содержание карбоксигемоглобина — комплекса гемоглобина с оксидом углерода (CO).",
+            questions: [
+                {
+                    q: "3. Что при этом в первую очередь нарушается в крови курильщика?",
+                    options: ["Количество лейкоцитов", "Перенос кислорода гемоглобином", "Свертываемость крови", "Содержание глюкозы"],
+                    correct: 1
+                },
+                {
+                    q: "4. Какой газ конкурирует с кислородом за связывание с гемом гемоглобина?",
+                    options: ["Азот", "Углекислый газ", "Углеродный оксид (CO)", "Водород"],
+                    correct: 2
+                }
+            ]
+        },
+        {
+            text: "Текст 3. На графике зависимости активности фермента от температуры видно, что при повышении температуры выше 40°C активность резко падает.",
+            questions: [
+                {
+                    q: "5. Какое явление объясняет резкое падение активности фермента при высокой температуре?",
+                    options: [
+                        "Активация фермента",
+                        "Денатурация белка (изменение конформации фермента)",
+                        "Ускорение синтеза фермента",
+                        "Уменьшение концентрации субстрата"
+                    ],
+                    correct: 1
+                }
+            ]
+        }
+    ];
+
+    // ЧАСТЬ 3 – соответствие
+    const part3 = [
+        {
+            title: "1. Соотнесите органеллы и их функции:",
+            leftLabel: "Органелла",
+            rightLabel: "Функция",
+            left: [
+                "1. Митохондрия",
+                "2. Рибосома",
+                "3. Лизосома",
+                "4. Хлоропласт",
+                "5. Аппарат Гольджи"
+            ],
+            rightOptions: ["А. Фотосинтез", "Б. Переваривание веществ в клетке", "В. Синтез белка", "Г. Транспорт и модификация белков", "Д. Энергетический обмен (АТФ)"],
+            // правильные ответы по буквам: 1–Д, 2–В, 3–Б, 4–А, 5–Г
+            correct: ["Д", "В", "Б", "А", "Г"]
+        },
+        {
+            title: "2. Соотнесите термины и определения:",
+            leftLabel: "Термин",
+            rightLabel: "Определение",
+            left: [
+                "1. Популяция",
+                "2. Биосфера",
+                "3. Биоценоз",
+                "4. Экосистема",
+                "5. Биом"
+            ],
+            rightOptions: [
+                "А. Совокупность организмов одного вида в определённой территории",
+                "Б. Сфера жизни, включающая все экосистемы Земли",
+                "В. Сообщество видов, взаимодействующих в определённой территории",
+                "Г. Совокупность биотопа и биоценоза",
+                "Д. Большая область со схожими климатическими и биологическими характеристиками"
+            ],
+            // 1–А, 2–Б, 3–В, 4–Г, 5–Д
+            correct: ["А", "Б", "В", "Г", "Д"]
+        },
+        {
+            title: "3. Соотнесите гормон и орган-источник:",
+            leftLabel: "Гормон",
+            rightLabel: "Орган",
+            left: [
+                "1. Инсулин",
+                "2. Адреналин",
+                "3. Тироксин",
+                "4. Эстроген",
+                "5. Соматотропин (гормон роста)"
+            ],
+            rightOptions: [
+                "А. Поджелудочная железа",
+                "Б. Надпочечник",
+                "В. Щитовидная железа",
+                "Г. Яичники (у женщин) / яички (частично у мужчин)",
+                "Д. Передняя доля гипофиза"
+            ],
+            // 1–А, 2–Б, 3–В, 4–Г, 5–Д
+            correct: ["А", "Б", "В", "Г", "Д"]
+        },
+        {
+            title: "4. Соотнесите фермент и его субстрат:",
+            leftLabel: "Фермент",
+            rightLabel: "Субстрат",
+            left: [
+                "1. Амилаза",
+                "2. Пепсин",
+                "3. Липаза",
+                "4. РНК-полимераза",
+                "5. ДНК-лигаза"
+            ],
+            rightOptions: [
+                "А. Крахмал",
+                "Б. Белки (в желудке)",
+                "В. Липиды (жиры)",
+                "Г. Синтез РНК по матрице ДНК",
+                "Д. Соединение фрагментов ДНК"
+            ],
+            // 1–А, 2–Б, 3–В, 4–Г, 5–Д
+            correct: ["А", "Б", "В", "Г", "Д"]
+        },
+        {
+            title: "5. Соотнесите орган и систему:",
+            leftLabel: "Орган",
+            rightLabel: "Система",
+            left: [
+                "1. Сердце",
+                "2. Почки",
+                "3. Лёгкие",
+                "4. Кишечник",
+                "5. Кожа"
+            ],
+            rightOptions: [
+                "А. Кровеносная система",
+                "Б. Выделительная система",
+                "В. Дыхательная система",
+                "Г. Пищеварительная система",
+                "Д. Покровная система"
+            ],
+            // 1–А, 2–Б, 3–В, 4–Г, 5–Д
+            correct: ["А", "Б", "В", "Г", "Д"]
+        }
+    ];
+
+    // ЧАСТЬ 4 – несколько правильных ответов
+    const part4 = [
+        {
+            q: "1. Какие вещества являются продуктами аэробного клеточного дыхания?",
+            options: ["CO₂", "Лактат (молочная кислота)", "ATP", "O₂", "H₂O", "Этанол"],
+            // ключ: А, В, Д (по исходному варианту: CO₂, ATP, H₂O)
+            correct: [0, 2, 4]
+        },
+        {
+            q: "2. Какие компоненты характерны для плазмы крови?",
+            options: ["Вода", "Эритроциты", "Белки (например, альбумины)", "Тромбоциты", "Ионы (минералы)", "Кератин"],
+            // А, В, Д -> Вода, Белки, Ионы
+            correct: [0, 2, 4]
+        },
+        {
+            q: "3. Какие структуры характерны для прокариот?",
+            options: [
+                "Ядро с мембраной",
+                "Плазмида",
+                "Нуклеоид (кольцевая ДНК)",
+                "80S рибосомы",
+                "70S рибосомы",
+                "Митохондрии"
+            ],
+            // Б, В, Д -> Плазмида, Нуклеоид, 70S рибосомы
+            correct: [1, 2, 4]
+        },
+        {
+            q: "4. Какие гормоны повышают уровень глюкозы в крови?",
+            options: [
+                "Инсулин",
+                "Глюкагон",
+                "Адреналин (эпинефрин)",
+                "Тироксин",
+                "Кортизол",
+                "Окситоцин"
+            ],
+            // Б, В, Д -> Глюкагон, Адреналин, Кортизол
+            correct: [1, 2, 4]
+        },
+        {
+            q: "5. Какие процессы обычно включают митоз?",
+            options: [
+                "Рост организма",
+                "Репродукция гамет",
+                "Регенерация тканей и заживление ран",
+                "Непосредственное образование половых клеток",
+                "Обновление эпителия",
+                "Кроссинговер"
+            ],
+            // ключ по файлу: А, В, Д  (оставляем как в ключе)
+            correct: [0, 1, 4]
+        }
+    ];
+
+    // ---------- ГЕНЕРАЦИЯ РАЗМЕТКИ ----------
+
+    function renderPart1() {
+        const container = document.getElementById("part1-questions");
+        container.innerHTML = "";
+        part1.forEach((qObj, index) => {
+            const div = document.createElement("div");
+            div.className = "question";
+            div.dataset.index = index.toString();
+
+            const text = document.createElement("div");
+            text.className = "q-text";
+            text.textContent = qObj.q;
+            div.appendChild(text);
+
+            const optsDiv = document.createElement("div");
+            optsDiv.className = "options";
+
+            qObj.options.forEach((opt, optIndex) => {
+                const label = document.createElement("label");
+                label.className = "option";
+
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = "p1q" + index;
+                input.value = optIndex.toString();
+
+                const span = document.createElement("span");
+                span.textContent = opt;
+
+                label.appendChild(input);
+                label.appendChild(span);
+                optsDiv.appendChild(label);
+            });
+
+            div.appendChild(optsDiv);
+
+            const fb = document.createElement("div");
+            fb.className = "feedback";
+            fb.textContent = "Ответ пока не выбран.";
+            div.appendChild(fb);
+
+            container.appendChild(div);
+        });
+    }
+
+    function renderPart2() {
+        const container = document.getElementById("part2-questions");
+        container.innerHTML = "";
+        let qCounter = 0;
+
+        part2Texts.forEach((block, blockIndex) => {
+            const blockDiv = document.createElement("div");
+
+            const textDiv = document.createElement("div");
+            textDiv.className = "text-block";
+            textDiv.textContent = block.text;
+            blockDiv.appendChild(textDiv);
+
+            block.questions.forEach((qObj) => {
+                const qDiv = document.createElement("div");
+                qDiv.className = "question";
+                qDiv.dataset.index = qCounter.toString();
+
+                const qText = document.createElement("div");
+                qText.className = "q-text";
+                qText.textContent = qObj.q;
+                qDiv.appendChild(qText);
+
+                const optsDiv = document.createElement("div");
+                optsDiv.className = "options";
+
+                qObj.options.forEach((opt, optIndex) => {
+                    const label = document.createElement("label");
+                    label.className = "option";
+
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = "p2q" + qCounter;
+                    input.value = optIndex.toString();
+
+                    const span = document.createElement("span");
+                    span.textContent = opt;
+
+                    label.appendChild(input);
+                    label.appendChild(span);
+                    optsDiv.appendChild(label);
+                });
+
+                qDiv.appendChild(optsDiv);
+
+                const fb = document.createElement("div");
+                fb.className = "feedback";
+                fb.textContent = "Ответ пока не выбран.";
+                qDiv.appendChild(fb);
+
+                blockDiv.appendChild(qDiv);
+                qCounter++;
+            });
+
+            container.appendChild(blockDiv);
+        });
+    }
+
+    function renderPart3() {
+        const container = document.getElementById("part3-questions");
+        container.innerHTML = "";
+
+        part3.forEach((task, taskIndex) => {
+            const card = document.createElement("div");
+            card.className = "question";
+            card.dataset.index = taskIndex.toString();
+
+            const title = document.createElement("div");
+            title.className = "section-title";
+            title.textContent = task.title;
+            card.appendChild(title);
+
+            const headerRow = document.createElement("div");
+            headerRow.className = "matching-row";
+            headerRow.innerHTML = `<strong>${task.leftLabel}</strong> &nbsp;–&nbsp; <strong>${task.rightLabel}</strong>`;
+            card.appendChild(headerRow);
+
+            task.left.forEach((leftText, rowIndex) => {
+                const row = document.createElement("div");
+                row.className = "matching-row";
+
+                const leftSpan = document.createElement("span");
+                leftSpan.textContent = leftText;
+                row.appendChild(leftSpan);
+
+                const select = document.createElement("select");
+                select.name = `p3t${taskIndex}r${rowIndex}`;
+                const placeholder = document.createElement("option");
+                placeholder.value = "";
+                placeholder.textContent = "—";
+                select.appendChild(placeholder);
+
+                ["А", "Б", "В", "Г", "Д"].forEach((letter, i) => {
+                    const opt = document.createElement("option");
+                    opt.value = letter;
+                    opt.textContent = letter;
+                    select.appendChild(opt);
+                });
+
+                row.appendChild(select);
+                card.appendChild(row);
+            });
+
+            const fb = document.createElement("div");
+            fb.className = "feedback";
+            fb.textContent = "Соотнесите элементы и нажмите «Проверить часть 3».";
+            card.appendChild(fb);
+
+            container.appendChild(card);
+        });
+    }
+
+    function renderPart4() {
+        const container = document.getElementById("part4-questions");
+        container.innerHTML = "";
+
+        part4.forEach((qObj, index) => {
+            const div = document.createElement("div");
+            div.className = "question";
+            div.dataset.index = index.toString();
+
+            const text = document.createElement("div");
+            text.className = "q-text";
+            text.textContent = qObj.q;
+            div.appendChild(text);
+
+            const optsDiv = document.createElement("div");
+            optsDiv.className = "options";
+
+            qObj.options.forEach((opt, optIndex) => {
+                const label = document.createElement("label");
+                label.className = "option";
+
+                const input = document.createElement("input");
+                input.type = "checkbox";
+                input.name = "p4q" + index;
+                input.value = optIndex.toString();
+
+                const span = document.createElement("span");
+                span.textContent = opt;
+
+                label.appendChild(input);
+                label.appendChild(span);
+                optsDiv.appendChild(label);
+            });
+
+            div.appendChild(optsDiv);
+
+            const fb = document.createElement("div");
+            fb.className = "feedback";
+            fb.textContent = "Выберите 2–3 варианта.";
+            div.appendChild(fb);
+
+            container.appendChild(div);
+        });
+    }
+
+    // ---------- ПРОВЕРКА ----------
+
+    function checkPart1() {
+        const container = document.getElementById("part1-questions");
+        const questions = container.querySelectorAll(".question");
+        let score = 0;
+
+        questions.forEach((qDiv, index) => {
+            const qData = part1[index];
+            const chosen = qDiv.querySelector("input[type='radio']:checked");
+            const fb = qDiv.querySelector(".feedback");
+            if (!chosen) {
+                fb.textContent = "Вы не выбрали ответ.";
+                fb.className = "feedback missed";
+            } else {
+                const val = parseInt(chosen.value, 10);
+                if (val === qData.correct) {
+                    score++;
+                    fb.textContent = "Верно.";
+                    fb.className = "feedback correct";
+                } else {
+                    const correctText = qData.options[qData.correct];
+                    fb.textContent = "Неверно. Правильный ответ: " + correctText;
+                    fb.className = "feedback incorrect";
+                }
+            }
+        });
+
+        const res = document.getElementById("part1-result");
+        res.style.display = "block";
+        res.innerHTML = `Часть 1: <span class="score">${score}</span> из <span class="score">${part1.length}</span> баллов.`;
+        return score;
+    }
+
+    function checkPart2() {
+        const container = document.getElementById("part2-questions");
+        const qDivs = container.querySelectorAll(".question");
+        let allQuestions = [];
+        part2Texts.forEach(block => block.questions.forEach(q => allQuestions.push(q)));
+
+        let score = 0;
+        qDivs.forEach((qDiv, index) => {
+            const qData = allQuestions[index];
+            const chosen = qDiv.querySelector("input[type='radio']:checked");
+            const fb = qDiv.querySelector(".feedback");
+            if (!chosen) {
+                fb.textContent = "Вы не выбрали ответ.";
+                fb.className = "feedback missed";
+            } else {
+                const val = parseInt(chosen.value, 10);
+                if (val === qData.correct) {
+                    score++;
+                    fb.textContent = "Верно.";
+                    fb.className = "feedback correct";
+                } else {
+                    const correctText = qData.options[qData.correct];
+                    fb.textContent = "Неверно. Правильный ответ: " + correctText;
+                    fb.className = "feedback incorrect";
+                }
+            }
+        });
+
+        const res = document.getElementById("part2-result");
+        res.style.display = "block";
+        res.innerHTML = `Часть 2: <span class="score">${score}</span> из <span class="score">${qDivs.length}</span> баллов.`;
+        return score;
+    }
+
+    function checkPart3() {
+        const container = document.getElementById("part3-questions");
+        const cards = container.querySelectorAll(".question");
+        let score = 0;
+
+        cards.forEach((card, taskIndex) => {
+            const task = part3[taskIndex];
+            const selects = card.querySelectorAll("select");
+            let localScore = 0;
+            let allAnswered = true;
+
+            selects.forEach((sel, rowIndex) => {
+                const val = sel.value;
+                if (!val) {
+                    allAnswered = false;
+                    return;
+                }
+                if (val === task.correct[rowIndex]) {
+                    localScore++;
+                }
+            });
+
+            // каждая пара даёт 1/5 балла? но по ключу обычно 1 за всё задание
+            // здесь считаем 1 балл за полностью верное задание
+            const fb = card.querySelector(".feedback");
+            if (!allAnswered) {
+                fb.textContent = "Не все соответствия выбраны.";
+                fb.className = "feedback missed";
+            } else if (localScore === task.left.length) {
+                score++;
+                fb.textContent = "Все соответствия верны. (+1 балл)";
+                fb.className = "feedback correct";
+            } else {
+                fb.textContent = `Есть ошибки: ${localScore} из ${task.left.length} соответствий верны. Балл за задание не засчитывается.`;
+                fb.className = "feedback incorrect";
+            }
+        });
+
+        const res = document.getElementById("part3-result");
+        res.style.display = "block";
+        res.innerHTML = `Часть 3: <span class="score">${score}</span> из <span class="score">${part3.length}</span> возможных баллов (по 1 баллу за полностью верное соответствие).`;
+        return score;
+    }
+
+    function arraysEqualAsSets(a, b) {
+        if (a.length !== b.length) return false;
+        const sa = new Set(a);
+        const sb = new Set(b);
+        if (sa.size !== sb.size) return false;
+        for (const v of sa) {
+            if (!sb.has(v)) return false;
+        }
+        return true;
+    }
+
+    function checkPart4() {
+        const container = document.getElementById("part4-questions");
+        const qDivs = container.querySelectorAll(".question");
+        let score = 0;
+
+        qDivs.forEach((qDiv, index) => {
+            const qData = part4[index];
+            const checkboxes = Array.from(qDiv.querySelectorAll("input[type='checkbox']"));
+            const fb = qDiv.querySelector(".feedback");
+
+            const chosenIndices = checkboxes
+                .filter(cb => cb.checked)
+                .map(cb => parseInt(cb.value, 10));
+
+            if (chosenIndices.length === 0) {
+                fb.textContent = "Вы не выбрали ответ.";
+                fb.className = "feedback missed";
+            } else if (arraysEqualAsSets(chosenIndices, qData.correct)) {
+                score++;
+                fb.textContent = "Набор ответов полностью верный. (+1 балл)";
+                fb.className = "feedback correct";
+            } else {
+                const letters = ["A", "Б", "В", "Г", "Д", "Е"];
+                const correctList = qData.correct
+                    .map(i => letters[i] + ") " + qData.options[i])
+                    .join("; ");
+                fb.textContent = "Неверно. Правильные варианты: " + correctList;
+                fb.className = "feedback incorrect";
+            }
+        });
+
+        const res = document.getElementById("part4-result");
+        res.style.display = "block";
+        res.innerHTML = `Часть 4: <span class="score">${score}</span> из <span class="score">${part4.length}</span> возможных баллов (по 1 баллу за полностью верный набор ответов).`;
+        return score;
+    }
+
+    function getComment(total, max) {
+        const p = total / max * 100;
+        if (p >= 90) return "Отличный уровень подготовки! Ты готов(а) к ЕНТ по этой теме.";
+        if (p >= 75) return "Очень хороший результат. Осталось повторить отдельные темы.";
+        if (p >= 60) return "Неплохо, но есть пробелы. Рекомендуется повторить теорию и прорешать ещё варианты.";
+        if (p >= 40) return "Уровень ниже среднего. Стоит серьёзно поработать над темой.";
+        return "Результат низкий. Лучше заново проработать теорию и потренироваться на нескольких тестах.";
+    }
+
+    function checkAll() {
+        const s1 = checkPart1();
+        const s2 = checkPart2();
+        const s3 = checkPart3();
+        const s4 = checkPart4();
+
+        // Часть 1: 25 баллов, Часть 2: 5, Часть 3: 5, Часть 4: 5 => максимум 40
+        const total = s1 + s2 + s3 + s4;
+        const max = 40;
+
+        const totalBox = document.getElementById("total-result");
+        totalBox.style.display = "block";
+        totalBox.innerHTML = `
+            Общий результат: <span class="score">${total}</span> из 
+            <span class="score">${max}</span> возможных баллов (по ключу).<br>
+            ${getComment(total, max)}
+        `;
+    }
+
+    // РЕНДЕР ПРИ ЗАГРУЗКЕ
+    document.addEventListener("DOMContentLoaded", () => {
+        renderPart1();
+        renderPart2();
+        renderPart3();
+        renderPart4();
+    });
+</script>
+</body>
+</html>
