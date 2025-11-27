@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Биология 8 класс — Иммунитет и вакцинация</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fb;
+      color: #222;
+    }
+    header {
+      background: #324b81;
+      color: #fff;
+      padding: 16px 24px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+    header p {
+      margin: 4px 0 0;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+    section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    h2 {
+      margin-top: 0;
+      color: #1e355f;
+    }
+    h3 {
+      color: #2c4470;
+      margin-top: 1.2em;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #e3ecff;
+      color: #324b81;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    .theory-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 800px) {
+      .theory-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .img-card {
+      background: #f7f8ff;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .img-card img {
+      max-width: 100%;
+      border-radius: 8px;
+      height: auto;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .pill-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .pill-list li {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f1f3ff;
+      font-size: 0.8rem;
+    }
+    .note {
+      background: #fff7e0;
+      border-left: 4px solid #f0b429;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    .highlight {
+      background: #e6ffef;
+      border-left: 4px solid #2f9e44;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    /* Test styles */
+    #test-container {
+      margin-top: 10px;
+    }
+    .question-card {
+      border-radius: 10px;
+      background: #f7f8ff;
+      padding: 12px 10px;
+      margin-bottom: 10px;
+    }
+    .question-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .options {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .options li {
+      margin-bottom: 4px;
+    }
+    .options label {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .controls {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: #324b81;
+      color: #fff;
+      transition: transform 0.05s ease, box-shadow 0.1s ease, background 0.15s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.18);
+      background: #263662;
+    }
+    button.secondary {
+      background: #e0e4f5;
+      color: #1e355f;
+      box-shadow: none;
+    }
+    #result {
+      margin-top: 16px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #edf9f0;
+      border-left: 4px solid #2f9e44;
+      display: none;
+      font-size: 0.95rem;
+    }
+    #result.bad {
+      background: #ffecec;
+      border-left-color: #e03131;
+    }
+    #details {
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 10px 0 16px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Биология 8 класс: Иммунитет и вакцинация</h1>
+    <p>Тема: Иммунитет. Врожденный и приобретённый иммунитет. Виды вакцин и их роль. Профилактика инфекционных заболеваний.</p>
+    <p>Учебная цель: <strong>8.1.3.6 — оценивать роль вакцинации в профилактике заболеваний.</strong></p>
+  </header>
+
+  <main>
+    <!-- ТЕОРИЯ -->
+    <section id="theory">
+      <div class="badge">Теоретическая часть</div>
+      <h2>1. Что такое иммунитет?</h2>
+      <div class="theory-grid">
+        <div>
+          <p><strong>Иммунитет</strong> — это способность организма защищаться от болезнетворных микроорганизмов (бактерий, вирусов, грибов, паразитов) и чужеродных веществ (антигенов).</p>
+          <p>Основные задачи иммунной системы:</p>
+          <ul>
+            <li>распознавать «своё» и «чужое»;</li>
+            <li>уничтожать инфекционные агенты;</li>
+            <li>запоминать встречу с возбудителем (формирование иммунологической памяти);</li>
+            <li>обеспечивать защиту при повторном заражении.</li>
+          </ul>
+          <div class="note">
+            Иммунитет обеспечивается работой органов иммунной системы: костного мозга, тимуса (вилочковой железы), селезёнки, лимфатических узлов и лимфоцитов (особых клеток крови).
+          </div>
+        </div>
+        <div class="img-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Immune_response.svg/512px-Immune_response.svg.png" alt="Схема иммунного ответа" />
+          <div>Схема работы иммунной системы: распознавание, атака и память.</div>
+        </div>
+      </div>
+
+      <h2>2. Врожденный и приобретённый иммунитет</h2>
+
+      <h3>2.1. Врожденный (неспецифический) иммунитет</h3>
+      <p><strong>Врожденный иммунитет</strong> присутствует у человека с рождения и действует быстро, но одинаково против множества различных возбудителей. Он не запоминает конкретных «врагов».</p>
+      <p>Компоненты врождённого иммунитета:</p>
+      <ul>
+        <li><strong>Кожa и слизистые оболочки</strong> — механический барьер.</li>
+        <li><strong>Кислая среда желудка</strong> — уничтожает часть микробов.</li>
+        <li><strong>Слёзная и слюнная жидкости</strong> — содержат вещества, разрушающие микробы.</li>
+        <li><strong>Фагоциты</strong> — клетки, которые «пожирают» микробы.</li>
+        <li><strong>Воспалительная реакция</strong> — приток клеток защиты к месту повреждения.</li>
+      </ul>
+      <div class="img-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Phagocytosis.png/512px-Phagocytosis.png" alt="Фагоцит поглощает бактерии" />
+        <div>Фагоцит (клетка иммунитета) поглощает бактерии.</div>
+      </div>
+
+      <h3>2.2. Приобретённый (специфический) иммунитет</h3>
+      <p><strong>Приобретённый иммунитет</strong> формируется в течение жизни после перенесённого заболевания или после вакцинации. Он направлен против конкретного возбудителя и обладает <strong>памятью</strong>.</p>
+      <p>Главные участники приобретённого иммунитета:</p>
+      <ul>
+        <li><strong>Лимфоциты</strong> (Т- и В-лимфоциты);</li>
+        <li><strong>Антитела</strong> — белки, которые связывают и обезвреживают антигены.</li>
+      </ul>
+      <p>При повторной встрече с тем же возбудителем организм реагирует быстрее и сильнее, поэтому человек может вообще не заболеть или болезнь протекает в лёгкой форме.</p>
+      <div class="highlight">
+        <strong>Важно:</strong> именно на механизме приобретённого иммунитета основано действие вакцин.
+      </div>
+
+      <h2>3. Виды иммунитета по способу приобретения</h2>
+      <p>Иммунитет может быть:</p>
+      <ul>
+        <li><strong>Естественный активный</strong> — после перенесённой болезни (например, после ветряной оспы).</li>
+        <li><strong>Естественный пассивный</strong> — антитела от матери к ребёнку через плаценту и с молоком.</li>
+        <li><strong>Искусственный активный</strong> — после вакцинации (введение ослабленных или убитых возбудителей).</li>
+        <li><strong>Искусственный пассивный</strong> — введение готовых антител (сыворотки, иммуноглобулины).</li>
+      </ul>
+      <ul class="pill-list">
+        <li>естественный активный</li>
+        <li>естественный пассивный</li>
+        <li>искусственный активный</li>
+        <li>искусственный пассивный</li>
+      </ul>
+
+      <h2>4. Вакцины и их виды</h2>
+      <p><strong>Вакцина</strong> — это препарат, содержащий ослабленные, убитые или фрагменты микроорганизмов (или их токсины), которые не вызывают тяжёлого заболевания, но «учат» иммунную систему распознавать возбудителя.</p>
+      <p>Основные виды вакцин:</p>
+      <ul>
+        <li><strong>Живые ослабленные</strong> (аттенуированные) — содержат ослабленные, но живые микробы или вирусы (пример: вакцина БЦЖ против туберкулёза).</li>
+        <li><strong>Инактивированные</strong> — содержат убитых возбудителей (пример: часть вакцин против гриппа).</li>
+        <li><strong>Анатоксины</strong> — содержат обезвреженные токсины бактерий (пример: против дифтерии и столбняка).</li>
+        <li><strong>Субъединичные и конъюгированные</strong> — содержат только части возбудителя (белки оболочки и др.).</li>
+        <li><strong>Генные (РНК- или ДНК-вакцины)</strong> — содержат фрагмент генетического материала, кодирующий определённый белок вируса.</li>
+      </ul>
+
+      <div class="theory-grid">
+        <div class="img-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Vaccination_nurse.jpg/512px-Vaccination_nurse.jpg" alt="Вакцинация" />
+          <div>Вакцинация создаёт искусственный активный иммунитет.</div>
+        </div>
+        <div>
+          <div class="note">
+            После вакцинации организм вырабатывает антитела и клетки памяти. При встрече с настоящим возбудителем иммунная система готова к быстрой защите.
+          </div>
+        </div>
+      </div>
+
+      <h2>5. Роль вакцинации в профилактике заболеваний (8.1.3.6)</h2>
+      <p>Вакцинация — один из самых эффективных способов профилактики инфекционных болезней. Благодаря массовым прививкам удалось значительно снизить заболеваемость и смертность от многих инфекций.</p>
+      <p><strong>Преимущества вакцинации:</strong></p>
+      <ul>
+        <li>предотвращает развитие тяжёлых форм заболеваний;</li>
+        <li>уменьшает риск осложнений;</li>
+        <li>создаёт коллективный иммунитет (защищает тех, кто по медицинским причинам не может быть привит);</li>
+        <li>помогает контролировать вспышки эпидемий.</li>
+      </ul>
+      <div class="highlight">
+        <strong>Коллективный иммунитет</strong> — это состояние, когда большинство людей защищено (переболели или привиты), и инфекция не может активно распространяться в популяции.
+      </div>
+
+      <h2>6. Профилактика инфекционных заболеваний</h2>
+      <p>Для защиты от инфекций важно сочетать вакцинацию с общими мерами профилактики:</p>
+      <ul>
+        <li>соблюдение правил личной гигиены (мытьё рук, использование индивидуальных средств гигиены);</li>
+        <li>сбалансированное питание, богатое витаминами;</li>
+        <li>достаточный сон и физическая активность;</li>
+        <li>проветривание помещений и влажная уборка;</li>
+        <li>избегание контакта с больными людьми;</li>
+        <li>своевременная вакцинация согласно национальному календарю прививок.</li>
+      </ul>
+      <div class="note">
+        Вакцинация — это не только личная защита, но и ответственное отношение к здоровью окружающих.
+      </div>
+    </section>
+
+    <!-- ТЕСТ -->
+    <section id="test">
+      <div class="badge">Интерактивный тест</div>
+      <h2>2. Проверь свои знания</h2>
+      <p>Ответь на 10 вопросов по теме. Вопросы каждый раз выбираются случайным образом. В конце ты увидишь свой результат.</p>
+
+      <div id="test-container"></div>
+
+      <div class="controls">
+        <button id="generate-btn">Сгенерировать новый тест</button>
+        <button id="check-btn">Проверить ответы</button>
+        <button id="clear-btn" class="secondary">Очистить ответы</button>
+      </div>
+
+      <div id="result">
+        <div id="score"></div>
+        <div id="details"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Биология 8 класс · Иммунитет и вакцинация · Интерактивный HTML-ресурс
+  </footer>
+
+  <script>
+    // Банк вопросов
+    const questionBank = [
+      {
+        text: "Иммунитет — это...",
+        options: [
+          "способность организма защищаться от инфекций и чужеродных веществ",
+          "процесс пищеварения в тонком кишечнике",
+          "способность клеток делиться",
+          "сумма всех обменных процессов в клетке"
+        ],
+        correctIndex: 0
+      },
+      {
+        text: "Какой иммунитет присутствует с рождения и действует быстро против многих возбудителей?",
+        options: [
+          "приобретённый специфический",
+          "врождённый (неспецифический)",
+          "искусственный пассивный",
+          "искусственный активный"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Какой орган НЕ относится к органам иммунной системы?",
+        options: [
+          "тимус (вилочковая железа)",
+          "селезёнка",
+          "печень",
+          "лимфатические узлы"
+        ],
+        correctIndex: 2
+      },
+      {
+        text: "Какие клетки «пожирают» микробы при врождённом иммунитете?",
+        options: [
+          "эритроциты",
+          "фагoциты",
+          "нейроны",
+          "эпителиальные клетки кожи"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Какая особенность характерна для приобретённого иммунитета?",
+        options: [
+          "отсутствие памяти о возбудителе",
+          "действует только в желудке",
+          "способность запоминать конкретного возбудителя",
+          "существует только у новорождённых"
+        ],
+        correctIndex: 2
+      },
+      {
+        text: "Антитела — это...",
+        options: [
+          "углеводы, запасаемые в печени",
+          "жиры, расщепляющиеся в кишечнике",
+          "белки, связывающие и обезвреживающие антиген",
+          "ферменты, переваривающие белки"
+        ],
+        correctIndex: 2
+      },
+      {
+        text: "Какой вид иммунитета формируется после перенесённого инфекционного заболевания?",
+        options: [
+          "естественный активный",
+          "естественный пассивный",
+          "искусственный пассивный",
+          "искусственный нейтральный"
+        ],
+        correctIndex: 0
+      },
+      {
+        text: "Какой вид иммунитета ребёнок получает от матери с молоком и через плаценту?",
+        options: [
+          "естественный активный",
+          "естественный пассивный",
+          "искусственный активный",
+          "искусственный пассивный"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Какой вид иммунитета формируется после вакцинации?",
+        options: [
+          "естественный активный",
+          "естественный пассивный",
+          "искусственный активный",
+          "искусственный пассивный"
+        ],
+        correctIndex: 2
+      },
+      {
+        text: "Что содержит вакцина?",
+        options: [
+          "только витамины и минералы",
+          "ослабленных, убитых или фрагменты возбудителей или их токсинов",
+          "только воду и сахар",
+          "живые и очень опасные микроорганизмы в больших количествах"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Как называется состояние, когда большинство людей привиты и инфекция плохо распространяется?",
+        options: [
+          "индивидуальный иммунитет",
+          "коллективный иммунитет",
+          "нервный иммунитет",
+          "генетический барьер"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Какой из перечисленных пунктов относится к профилактике инфекционных заболеваний?",
+        options: [
+          "отсутствие гигиены",
+          "употребление просроченной пищи",
+          "регулярное мытьё рук и вакцинация",
+          "постоянное недосыпание"
+        ],
+        correctIndex: 2
+      },
+      {
+        text: "К какому виду относится введение готовых антител (сыворотка)?",
+        options: [
+          "естественный пассивный иммунитет",
+          "искусственный пассивный иммунитет",
+          "естественный активный иммунитет",
+          "искусственный активный иммунитет"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Главная цель вакцинации — это...",
+        options: [
+          "вызвать тяжёлое заболевание",
+          "обучить иммунную систему распознавать возбудителя",
+          "снизить температуру тела",
+          "ускорить пищеварение"
+        ],
+        correctIndex: 1
+      },
+      {
+        text: "Почему важна вакцинация для людей, которые сами не могут привиться по медицинским показаниям?",
+        options: [
+          "вакцинация ухудшает их здоровье",
+          "коллективный иммунитет снижает риск их заражения",
+          "они никогда не болеют",
+          "она не имеет к ним отношения"
+        ],
+        correctIndex: 1
+      }
+    ];
+
+    let currentQuestions = [];
+
+    function shuffleArray(arr) {
+      const array = arr.slice();
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function generateTest() {
+      // Выбираем 10 случайных вопросов
+      const shuffled = shuffleArray(questionBank);
+      currentQuestions = shuffled.slice(0, 10);
+      const container = document.getElementById("test-container");
+      container.innerHTML = "";
+      currentQuestions.forEach((q, index) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+
+        const title = document.createElement("div");
+        title.className = "question-title";
+        title.textContent = (index + 1) + ". " + q.text;
+        card.appendChild(title);
+
+        const optionsList = document.createElement("ul");
+        optionsList.className = "options";
+
+        q.options.forEach((opt, optIndex) => {
+          const li = document.createElement("li");
+          const label = document.createElement("label");
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "q" + index;
+          input.value = optIndex;
+          label.appendChild(input);
+          const span = document.createElement("span");
+          span.textContent = opt;
+          label.appendChild(span);
+          li.appendChild(label);
+          optionsList.appendChild(li);
+        });
+
+        card.appendChild(optionsList);
+        container.appendChild(card);
+      });
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "none";
+      resultDiv.classList.remove("bad");
+      resultDiv.querySelector("#score").textContent = "";
+      resultDiv.querySelector("#details").textContent = "";
+    }
+
+    function checkAnswers() {
+      if (currentQuestions.length === 0) {
+        alert("Сначала сгенерируйте тест.");
+        return;
+      }
+
+      let correctCount = 0;
+      let total = currentQuestions.length;
+      let details = "";
+
+      currentQuestions.forEach((q, index) => {
+        const selected = document.querySelector('input[name="q' + index + '"]:checked');
+        const userAnswer = selected ? parseInt(selected.value) : null;
+        const isCorrect = userAnswer === q.correctIndex;
+
+        if (isCorrect) {
+          correctCount++;
+        } else {
+          const correctText = q.options[q.correctIndex];
+          details += (index + 1) + ". " + q.text + "\n";
+          details += "   Верный ответ: " + correctText + "\n\n";
+        }
+      });
+
+      const percent = Math.round((correctCount / total) * 100);
+      const resultDiv = document.getElementById("result");
+      const scoreDiv = document.getElementById("score");
+      const detailsDiv = document.getElementById("details");
+
+      scoreDiv.textContent =
+        "Ваш результат: " + correctCount + " из " + total + " (" + percent + "%).";
+
+      if (percent < 60) {
+        resultDiv.classList.add("bad");
+        detailsDiv.textContent =
+          "Рекомендуется ещё раз внимательно прочитать теоретический материал. " +
+          "Ниже приведены вопросы, в которых были допущены ошибки:\n\n" + details;
+      } else if (percent < 85) {
+        resultDiv.classList.remove("bad");
+        detailsDiv.textContent =
+          "Неплохо! Однако стоит повторить вопросы, в которых были допущены ошибки:\n\n" + details;
+      } else {
+        resultDiv.classList.remove("bad");
+        detailsDiv.textContent =
+          "Отличный результат! Вы хорошо усвоили материал. Если есть ошибки, посмотрите их ниже:\n\n" + details;
+      }
+
+      resultDiv.style.display = "block";
+    }
+
+    function clearAnswers() {
+      const inputs = document.querySelectorAll('#test-container input[type="radio"]');
+      inputs.forEach(input => {
+        input.checked = false;
+      });
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "none";
+      resultDiv.classList.remove("bad");
+    }
+
+    document.getElementById("generate-btn").addEventListener("click", generateTest);
+    document.getElementById("check-btn").addEventListener("click", checkAnswers);
+    document.getElementById("clear-btn").addEventListener("click", clearAnswers);
+
+    // Сгенерировать тест при первой загрузке
+    generateTest();
+  </script>
+</body>
+</html>
